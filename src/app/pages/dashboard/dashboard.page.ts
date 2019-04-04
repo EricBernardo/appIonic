@@ -1,14 +1,14 @@
-import { AuthService } from './../../services/auth.service';
 import { Component, OnInit } from '@angular/core';
-import { Storage } from '@ionic/storage';
 import { ToastController } from '@ionic/angular';
+import { Storage } from '@ionic/storage';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
-  selector: 'app-inside',
-  templateUrl: './inside.page.html',
-  styleUrls: ['./inside.page.scss'],
+  selector: 'app-dashboard',
+  templateUrl: './dashboard.page.html',
+  styleUrls: ['./dashboard.page.scss'],
 })
-export class InsidePage implements OnInit {
+export class DashboardPage implements OnInit {
 
   data = '';
 
@@ -31,7 +31,7 @@ export class InsidePage implements OnInit {
     // ONLY FOR TESTING!
     this.storage.remove('access_token');
 
-	let toast = this.toastController.create({
+    let toast = this.toastController.create({
       message: 'JWT removed',
       duration: 3000
     });

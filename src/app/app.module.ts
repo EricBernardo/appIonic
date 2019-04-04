@@ -1,18 +1,18 @@
+import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
- 
-import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
+import { JwtModule, JWT_OPTIONS } from '@auth0/angular-jwt';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
- 
-import { AppComponent } from './app.component';
+import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
+import { IonicStorageModule, Storage } from '@ionic/storage';
 import { AppRoutingModule } from './app-routing.module';
- 
-import { HttpClientModule } from '@angular/common/http';
-import { Storage, IonicStorageModule } from '@ionic/storage';
-import { JwtModule, JWT_OPTIONS } from '@auth0/angular-jwt';
- 
+import { AppComponent } from './app.component';
+
+
+
+
 export function jwtOptionsFactory(storage) {
   return {
     tokenGetter: () => {
@@ -21,20 +21,22 @@ export function jwtOptionsFactory(storage) {
     whitelistedDomains: ['api.leadforce.com.br']
   }
 }
- 
+
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [
+    AppComponent
+  ],
   entryComponents: [],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,
-  HttpClientModule,
-  IonicStorageModule.forRoot(),
-  JwtModule.forRoot({
-    jwtOptionsProvider: {
-      provide: JWT_OPTIONS,
-      useFactory: jwtOptionsFactory,
-      deps: [Storage],
-    }
-  })],
+    HttpClientModule,
+    IonicStorageModule.forRoot(),
+    JwtModule.forRoot({
+      jwtOptionsProvider: {
+        provide: JWT_OPTIONS,
+        useFactory: jwtOptionsFactory,
+        deps: [Storage],
+      }
+    })],
   providers: [
     StatusBar,
     SplashScreen,
@@ -42,4 +44,4 @@ export function jwtOptionsFactory(storage) {
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule { }
