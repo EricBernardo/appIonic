@@ -6,7 +6,6 @@ import { Platform } from '@ionic/angular';
 import { AuthService } from './services/auth.service';
 import { TabsPage } from './tabs/tabs.page';
 
-
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html'
@@ -14,7 +13,6 @@ import { TabsPage } from './tabs/tabs.page';
 export class AppComponent {
 
   rootPage = TabsPage;
-  appState: boolean;
 
   constructor(
     private platform: Platform,
@@ -34,8 +32,6 @@ export class AppComponent {
       this.splashScreen.hide();
 
       this.authService.authenticationState.subscribe((state) => {
-
-        this.appState = state;
 
         if (state) {
           this.router.navigate(['tabs/dashboard']);

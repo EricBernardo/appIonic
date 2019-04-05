@@ -2,27 +2,27 @@
 
 <ion-content>
 
-    <ion-card class="card">
-        <ion-card-header class="bb-grove">
-            <h4 class="mg-0">Lista de Leads</h4>
-        </ion-card-header>
-        <ion-card-content>
+  <ion-card class="card">
+    <ion-card-header class="bb-grove">
+      <h4 class="mg-0">Lista de Leads</h4>
+    </ion-card-header>
+    <ion-card-content>
 
-            <ion-row *ngFor="let item of leads" class="leads">
-                <ion-col>
-                    <ion-label>{{item.name}}</ion-label>
-                </ion-col>
-            </ion-row>
+      <ion-row *ngFor="let item of leads" class="leads">
+        <ion-col>
+          <ion-label>{{item.name}}</ion-label>
+        </ion-col>
+      </ion-row>
 
-            <ion-infinite-scroll threshold="100px" (ionInfinite)="getLeads($event)">
-                <ion-infinite-scroll-content
-                    loadingSpinner="bubbles"
-                    loadingText="Carregando dados...">
-                </ion-infinite-scroll-content>
-            </ion-infinite-scroll>
+      <ion-infinite-scroll threshold="100px" (ionInfinite)="getLeads($event)">
+        <ion-infinite-scroll-content
+          loadingSpinner="bubbles"
+          loadingText="Carregando dados...">
+        </ion-infinite-scroll-content>
+      </ion-infinite-scroll>
 
-        </ion-card-content>
+    </ion-card-content>
 
-    </ion-card>
+  </ion-card>
 
 </ion-content>
