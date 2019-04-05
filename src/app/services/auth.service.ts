@@ -1,11 +1,12 @@
-import { Platform, AlertController } from '@ionic/angular';
-import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { AlertController, Platform } from '@ionic/angular';
 import { Storage } from '@ionic/storage';
-import { environment } from '../../environments/environment';
-import { tap, catchError } from 'rxjs/operators';
 import { BehaviorSubject } from 'rxjs';
+import { catchError, tap } from 'rxjs/operators';
+import { environment } from '../../environments/environment';
+import { UserService } from './../services/user/user.service';
 
 const TOKEN_KEY = 'access_token';
 
@@ -19,13 +20,14 @@ export class AuthService {
   authenticationState = new BehaviorSubject(false);
 
   constructor(private http: HttpClient, private helper: JwtHelperService, private storage: Storage,
-    private plt: Platform, private alertController: AlertController) {
+    private plt: Platform, private alertController: AlertController, private userService: UserService) {
     this.plt.ready().then(() => {
       this.checkToken();
     });
   }
 
   checkToken() {
+
     this.storage.get(TOKEN_KEY).then(token => {
       if (token) {
         const decoded = this.helper.decodeToken(token);
@@ -45,9 +47,11 @@ export class AuthService {
     return this.http.post(`${this.url}auth`, credentials)
       .pipe(
         tap(res => {
+
           this.storage.set(TOKEN_KEY, res['access_token']);
           this.user = this.helper.decodeToken(res['access_token']);
           this.authenticationState.next(true);
+
         }),
         catchError(e => {
           this.showAlert(e.error.msg);
@@ -77,7 +81,18 @@ export class AuthService {
   }
 
   isAuthenticated() {
-    return this.authenticationState.value;
+
+    if (this.authenticationState.value) {
+
+      this.userService.get().subscribe((response) => {
+        this.userService.setUserData(response);
+      });
+
+      return true;
+
+    }
+
+    return false;
   }
 
   showAlert(msg) {

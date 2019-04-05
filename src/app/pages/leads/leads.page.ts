@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { LeadsService } from 'src/app/services/leads.service';
+import { LeadsService } from 'src/app/services/leads/leads.service';
 
 @Component({
 	selector: 'app-leads',

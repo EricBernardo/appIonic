@@ -1,8 +1,9 @@
 import { CommonModule } from '@angular/common';
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
+import { HeaderComponent } from './../../components/header/header.component';
 import { DashboardPage } from './dashboard.page';
 
 
@@ -21,6 +22,8 @@ const routes: Routes = [
     IonicModule,
     RouterModule.forChild(routes)
   ],
-  declarations: [DashboardPage]
+  exports: [],
+  declarations: [DashboardPage, HeaderComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class DashboardPageModule { }

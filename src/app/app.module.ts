@@ -37,6 +37,7 @@ export function jwtOptionsFactory(storage) {
         deps: [Storage],
       }
     })],
+  exports: [],
   providers: [
     StatusBar,
     SplashScreen,
