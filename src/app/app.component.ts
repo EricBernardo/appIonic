@@ -14,6 +14,7 @@ import { TabsPage } from './tabs/tabs.page';
 export class AppComponent {
 
   rootPage = TabsPage;
+  appState: boolean;
 
   constructor(
     private platform: Platform,
@@ -26,18 +27,26 @@ export class AppComponent {
   }
 
   initializeApp() {
+
     this.platform.ready().then(() => {
+
       this.statusBar.styleDefault();
       this.splashScreen.hide();
 
-      this.authService.authenticationState.subscribe(state => {
+      this.authService.authenticationState.subscribe((state) => {
+
+        this.appState = state;
+
         if (state) {
           this.router.navigate(['tabs/dashboard']);
         } else {
           this.router.navigate(['login']);
         }
+
       });
 
     });
+
   }
+
 }
