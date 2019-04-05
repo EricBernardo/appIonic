@@ -1,6 +1,9 @@
+import { CommonModule } from '@angular/common';
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
-import { SharedModule } from '../shared/shared.module';
+import { IonicModule } from '@ionic/angular';
+import { HeaderComponent } from './../components/header/header.component';
 import { TabsPage } from './tabs.page';
 
 const routes: Routes = [
@@ -37,10 +40,13 @@ const routes: Routes = [
 
 @NgModule({
   imports: [
-    SharedModule,
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    IonicModule,
     RouterModule.forChild(routes)
   ],
-  declarations: [TabsPage],
+  declarations: [TabsPage, HeaderComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class TabsPageModule { }
