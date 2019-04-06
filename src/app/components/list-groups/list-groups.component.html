@@ -4,8 +4,8 @@
     <ion-label class="fw700">Selecione um grupo</ion-label>
   </ion-list-header>
 
-  <ion-item class="text-10" (click)="messages()">
-    <ion-label>New Offer 25% OFF</ion-label>
+  <ion-item *ngFor="let item of data" class="text-10" (click)="setGroup(item.id)">
+    <ion-label>{{ item.name }}</ion-label>
   </ion-item>
 
 </ion-list>

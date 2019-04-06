@@ -25,7 +25,8 @@ export class HeaderComponent implements OnInit {
       component: ListGroupsComponent,
       event: ev,
       animated: true,
-      showBackdrop: true
+      translucent: true,
+      showBackdrop: true,
     });
     return await popover.present();
   }
