@@ -9,6 +9,7 @@ import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { IonicStorageModule, Storage } from '@ionic/storage';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { ListGroupsComponent } from './components/list-groups/list-groups.component';
 
 function jwtOptionsFactory(storage) {
   return {
@@ -19,9 +20,12 @@ function jwtOptionsFactory(storage) {
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ListGroupsComponent
   ],
-  entryComponents: [],
+  entryComponents: [
+    ListGroupsComponent
+  ],
   imports: [
     AppRoutingModule,
     BrowserModule,
